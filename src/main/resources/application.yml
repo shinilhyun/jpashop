@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    username: admin
+    password: qlqjs123
+    url: "jdbc:mysql://db.shinilhyun.com:3306/aiden"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        fromat_sql: true
+        default_batch_fetch_size: 500
+
+    open-in-view: false
+
+  logging.level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
