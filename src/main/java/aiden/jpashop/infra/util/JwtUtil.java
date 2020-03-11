@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public abstract class JwtUtil {
+public class JwtUtil {
 
     public static String createToken(UserDetailsImpl userDetails) {
         return createToken(userDetails, DateUtil.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));

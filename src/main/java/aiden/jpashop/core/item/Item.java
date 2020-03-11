@@ -23,5 +23,5 @@ public abstract class Item extends BaseTimeEntity {
 
     private int price;
 
-    private int StockQuantity;
+    private int stockQuantity;
 }
