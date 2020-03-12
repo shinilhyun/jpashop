@@ -1,5 +1,7 @@
 package aiden.jpashop.api;
 
+import aiden.jpashop.core.member.domain.Member;
+import aiden.jpashop.core.member.domain.MemberRepository;
 import aiden.jpashop.core.support.Address;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,8 +30,11 @@ class MemberControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private MemberRepository memberRepository;
+
     @Test
-    public void 회원가입테스트() throws Exception {
+    public void 회원가입테스트_성공() throws Exception {
 
         MemberDto.JoinRequest request = MemberDto.JoinRequest.builder()
                 .username("aidenshin@hanmail.net")
@@ -43,5 +48,33 @@ class MemberControllerTest {
                 .content(objectMapper.writeValueAsString(request)))
                 .andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void 회원가입테스트_이미가입된_username() throws Exception {
+
+        //  Given
+        String username = "aidenshin@hanmail.net";
+
+        memberRepository.save(Member.builder()
+                .username(username)
+                .password("1234")
+                .tel("01023024")
+                .address(new Address("seoul", "sdf", " 0123"))
+                .build());
+
+        //  When
+        MemberDto.JoinRequest request = MemberDto.JoinRequest.builder()
+                .username(username)
+                .password("1234")
+                .tel("01050351234")
+                .address(new Address("seout", "gdklgj", "02342"))
+                .build();
+
+        mockMvc.perform(post("/join")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 }
