@@ -21,11 +21,6 @@ public class JpashopApplication {
     }
 
     @Bean
-    public AuditorAware<String> auditorProvider() {
-        return () -> Optional.of(SecurityContextHolder.getContext().getAuthentication().getName());
-    }
-
-    @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
