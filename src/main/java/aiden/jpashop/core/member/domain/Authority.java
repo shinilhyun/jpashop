@@ -36,4 +36,5 @@ public class Authority extends BaseTimeEntity implements GrantedAuthority {
     public String getAuthority() {
         return role.name();
     }
+
 }

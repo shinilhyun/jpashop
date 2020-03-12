@@ -9,6 +9,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     boolean existsByUsername(String username);
 
-    @EntityGraph("authority")
+    @EntityGraph(attributePaths = "authorities")
     Optional<Member> findByUsername(String username);
+
 }

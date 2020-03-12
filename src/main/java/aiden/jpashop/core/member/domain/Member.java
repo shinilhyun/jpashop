@@ -38,14 +38,11 @@ public class Member extends BaseTimeEntity {
     private List<Authority> authorities = new ArrayList<>();
 
     @Builder
-    public Member(String username, String password, String name, String tel, Address address) {
+    public Member(String username, String password, String tel, Address address) {
         this.username = username;
         this.password = password;
         this.tel = tel;
            this.address = address;
     }
 
-    public void updateMemberInfo(String name, String tel) {
-        this.tel = tel;
-    }
 }
