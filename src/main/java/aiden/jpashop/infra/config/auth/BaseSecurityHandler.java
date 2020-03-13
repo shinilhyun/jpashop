@@ -1,7 +1,7 @@
 package aiden.jpashop.infra.config.auth;
 
 import aiden.jpashop.infra.config.auth.jwt.JwtInfo;
-import aiden.jpashop.infra.util.JwtUtil;
+import aiden.jpashop.infra.util.JwtUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,7 +26,7 @@ public class BaseSecurityHandler implements AuthenticationSuccessHandler, Authen
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getDetails();
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.setHeader(JwtInfo.HEADER_NAME, JwtUtil.createToken(userDetails));
+        response.setHeader(JwtInfo.HEADER_NAME, JwtUtils.createToken(userDetails));
 
     }
 

@@ -1,6 +1,7 @@
 package aiden.jpashop.api;
 
 import aiden.jpashop.core.member.domain.Authority;
+import aiden.jpashop.core.member.domain.Member;
 import aiden.jpashop.core.support.Address;
 import lombok.Builder;
 import lombok.Data;
@@ -40,5 +41,28 @@ public class MemberDto {
             this.address = address;
         }
 
+    }
+
+    @Data
+    public static class Detail {
+
+        private String username;
+        private String tel;
+        private Address address;
+
+        @Builder
+        public Detail(String username, String password, String tel, Address address) {
+            this.username = username;
+            this.tel = tel;
+            this.address = address;
+        }
+
+        public static Detail of(Member member) {
+            return Detail.builder()
+                    .username(member.getUsername())
+                    .address(member.getAddress())
+                    .tel(member.getTel())
+                    .build();
+        }
     }
 }

@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class JwtUtil {
+public class JwtUtils {
 
     public static String createToken(UserDetailsImpl userDetails) {
-        return createToken(userDetails, DateUtil.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));
+        return createToken(userDetails, DateUtils.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));
     }
 
     private static String createToken(UserDetailsImpl userDetails, Date date) {
@@ -52,7 +52,7 @@ public class JwtUtil {
     }
 
     public static String refreshToken(UserDetailsImpl userDetails) {
-        return createToken(userDetails, DateUtil.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));
+        return createToken(userDetails, DateUtils.nowAfterDaysToDate(JwtInfo.EXPIRES_LIMIT));
     }
 
     public static DecodedJWT tokenToJwt(String token) {

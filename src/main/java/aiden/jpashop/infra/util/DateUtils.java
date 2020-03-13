@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
-public class DateUtil {
+public class DateUtils {
 
     public static Date nowToDate() {
         return Date.from(LocalDateTime.now().toInstant(ZoneOffset.ofHours(9)));
@@ -14,6 +14,6 @@ public class DateUtil {
         return Date.from(LocalDateTime.now().plusDays(days).toInstant(ZoneOffset.ofHours(9)));
     }
 
-    private DateUtil() {
+    private DateUtils() {
     }
 }

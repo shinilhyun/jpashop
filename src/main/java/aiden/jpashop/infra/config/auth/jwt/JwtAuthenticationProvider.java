@@ -1,6 +1,6 @@
 package aiden.jpashop.infra.config.auth.jwt;
 
-import aiden.jpashop.infra.util.JwtUtil;
+import aiden.jpashop.infra.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,7 +23,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
         String token = authentication.getCredentials().toString();
 
-        if (JwtUtil.verify(token)) {
+        if (JwtUtils.verify(token)) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(token);
             return new JwtAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
         } else {

@@ -1,20 +1,21 @@
 package aiden.jpashop.api;
 
+import aiden.jpashop.TestUtils;
 import aiden.jpashop.core.member.domain.Member;
 import aiden.jpashop.core.member.domain.MemberRepository;
 import aiden.jpashop.core.support.Address;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import aiden.jpashop.infra.config.auth.jwt.JwtInfo;
+import aiden.jpashop.infra.util.JwtUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -76,5 +77,27 @@ class MemberControllerTest {
                 .content(objectMapper.writeValueAsString(request)))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void 회원상세정보조회_테스트() throws Exception {
+
+        //  Given
+        String username = "aidenshin@hanmail.net";
+
+        Member member = memberRepository.save(Member.builder()
+                .username(username)
+                .password("1234")
+                .tel("01023024")
+                .address(new Address("seoul", "sdf", " 0123"))
+                .build());
+
+        //  When
+
+        mockMvc.perform(get("/api/v1/member")
+                .header(TestUtils.AUTH_HEADER, TestUtils.createToken(member))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 }
