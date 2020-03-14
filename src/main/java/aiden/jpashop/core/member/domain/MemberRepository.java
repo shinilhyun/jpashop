@@ -1,5 +1,6 @@
 package aiden.jpashop.core.member.domain;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -5,6 +5,8 @@ import aiden.jpashop.core.member.domain.Member;
 import aiden.jpashop.core.support.Address;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Page;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class MemberDto {
 
     private Long id;
@@ -22,6 +25,7 @@ public class MemberDto {
     private List<Authority> authorities = new ArrayList<>();
 
     @Data
+    @NoArgsConstructor
     public static class JoinRequest {
 
         @Email
@@ -44,6 +48,7 @@ public class MemberDto {
     }
 
     @Data
+    @NoArgsConstructor
     public static class Detail {
 
         private String username;
@@ -63,6 +68,10 @@ public class MemberDto {
                     .address(member.getAddress())
                     .tel(member.getTel())
                     .build();
+        }
+
+        public static Page<Detail> of(Page<Member> members) {
+            return members.map(Detail::of);
         }
     }
 }

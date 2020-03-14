@@ -1,5 +1,6 @@
 package aiden.jpashop.infra.config;
 
+import aiden.jpashop.core.member.domain.Role;
 import aiden.jpashop.infra.config.auth.BaseSecurityHandler;
 import aiden.jpashop.infra.config.auth.ajax.AjaxAuthenticationProvider;
 import aiden.jpashop.infra.config.auth.ajax.filter.AjaxAuthenticationFilter;
@@ -67,6 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/v1/admin/**").hasRole("ADMIN")
                 .antMatchers(ROOT_ENTRY_POINT).authenticated()
                 .antMatchers(TOKEN_ENTRY_POINT).permitAll()
                 .antMatchers(LOGIN_ENTRY_POINT).permitAll()

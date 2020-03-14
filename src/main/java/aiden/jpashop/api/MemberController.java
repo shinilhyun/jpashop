@@ -5,6 +5,8 @@ import aiden.jpashop.core.member.service.MemberFindService;
 import aiden.jpashop.core.member.service.MemberJoinService;
 import aiden.jpashop.infra.util.PrincipalUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,5 +48,13 @@ public class MemberController {
         Member member = memberFindService.getMemberDetail(memberId);
 
         return ResponseEntity.ok(MemberDto.Detail.of(member));
+    }
+
+    @GetMapping("/api/v1/members")
+    public ResponseEntity getAllMemberPage(Pageable pageable) {
+
+        Page<Member> memberPage = memberFindService.getAllMemberPage(pageable);
+
+        return ResponseEntity.ok().body(MemberDto.Detail.of(memberPage));
     }
 }
