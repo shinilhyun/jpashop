@@ -17,6 +17,7 @@ public class MemberAdminController {
 
     @GetMapping("/api/v1/admin/members")
     public ResponseEntity getAllMember(Pageable pageable) {
+
         Page<Member> memberPage = memberFindService.getAllMemberPage(pageable);
 
         return ResponseEntity.ok().body(MemberAdminDto.Info.of(memberPage));

@@ -14,17 +14,14 @@ import java.util.List;
 
 public class TestUtils {
 
-    public static String AUTH_TOKEN;
+    public static String AUTH_TOKEN = generateAdminToken();
     public static String AUTH_HEADER = JwtInfo.HEADER_NAME;
 
-    public TestUtils() {
-        AUTH_TOKEN = generateUserToken();
-    }
-
-    public String generateUserToken() {
+    public static String generateAdminToken() {
 
         List<String> roles = new ArrayList<>();
         roles.add("ROLE_USER");
+        roles.add("ROLE_ADMIN");
 
         return JWT.create()
                 .withIssuer(JwtInfo.ISSUER)

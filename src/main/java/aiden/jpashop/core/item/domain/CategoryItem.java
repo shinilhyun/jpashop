@@ -1,4 +1,4 @@
-package aiden.jpashop.core.item;
+package aiden.jpashop.core.item.domain;
 
 import aiden.jpashop.core.support.BaseTimeEntity;
 import lombok.AccessLevel;

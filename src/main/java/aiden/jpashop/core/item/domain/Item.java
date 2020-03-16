@@ -1,7 +1,8 @@
-package aiden.jpashop.core.item;
+package aiden.jpashop.core.item.domain;
 
 import aiden.jpashop.core.support.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,10 @@ public abstract class Item extends BaseTimeEntity {
     private int price;
 
     private int stockQuantity;
+
+    public Item(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
 }

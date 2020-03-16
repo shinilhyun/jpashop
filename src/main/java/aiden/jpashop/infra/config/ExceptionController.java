@@ -1,4 +1,4 @@
-package aiden.jpashop.api;
+package aiden.jpashop.infra.config;
 
 import aiden.jpashop.core.member.exception.MemberJoinException;
 import lombok.extern.slf4j.Slf4j;

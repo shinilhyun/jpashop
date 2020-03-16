@@ -1,4 +1,4 @@
-package aiden.jpashop.core.item;
+package aiden.jpashop.core.item.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;

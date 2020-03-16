@@ -1,6 +1,7 @@
-package aiden.jpashop.core.item;
+package aiden.jpashop.core.item.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,9 +18,10 @@ public class Book extends Item {
 
     private String isbn;
 
-    public Book(String author, String isbn) {
+    @Builder
+    public Book(String name, int price, int stockQuantity, String author, String isbn) {
+        super(name, price, stockQuantity);
         this.author = author;
         this.isbn = isbn;
     }
-
 }
