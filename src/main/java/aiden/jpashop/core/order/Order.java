@@ -2,6 +2,7 @@ package aiden.jpashop.core.order;
 
 import aiden.jpashop.core.support.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,6 +27,5 @@ public class Order extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLineItem> orderLineItem = new ArrayList<>();
-
 
 }

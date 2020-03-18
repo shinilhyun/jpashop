@@ -1,5 +1,6 @@
 package aiden.jpashop.core.order;
 
+import aiden.jpashop.core.item.domain.Item;
 import aiden.jpashop.core.support.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,4 +27,28 @@ public class OrderLineItem extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    public OrderLineItem(Long itemId, int orderPrice, int count, Order order) {
+        this.itemId = itemId;
+        this.orderPrice = orderPrice;
+        this.count = count;
+        updateOrder(order);
+    }
+
+    public void updateOrder(Order order) {
+        if (this.order != null) {
+            this.order.getOrderLineItem().remove(this);
+        }
+        this.order = order;
+        order.getOrderLineItem().add(this);
+    }
+
+    public static OrderLineItem create(Item item, int count, Order order) {
+
+        int orderPrice = item.getPrice() * count;
+
+        return new OrderLineItem(item.getId(), orderPrice, count, order);
+
+    }
+
 }
