@@ -26,4 +26,11 @@
 - 패키지의 의존 사이클이 생기지 않도록 구현해보자
 
 
+---
+
+Spring Data JPA
+
+Spring Security(+ JWT)
+
+Querydsl
 

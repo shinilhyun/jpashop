@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @SpringBootApplication
 @EnableJpaAuditing
-@EnableJpaRepositories
 public class JpashopApplication {
 
     public static void main(String[] args) {
