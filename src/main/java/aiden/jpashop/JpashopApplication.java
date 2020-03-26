@@ -24,4 +24,3 @@ public class JpashopApplication {
         return new BCryptPasswordEncoder();
     }
 }
-

@@ -31,4 +31,12 @@ public abstract class Item extends BaseTimeEntity {
         this.price = price;
         this.stockQuantity = stockQuantity;
     }
+
+    public void removeStock(int i) {
+        this.stockQuantity -= i;
+    }
+
+    public void addStock(int i) {
+        this.stockQuantity += i;
+    }
 }

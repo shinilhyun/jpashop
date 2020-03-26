@@ -47,8 +47,11 @@ public class OrderLineItem extends BaseTimeEntity {
 
         int orderPrice = item.getPrice() * count;
 
+        item.removeStock(count);
+
         return new OrderLineItem(item.getId(), orderPrice, count, order);
 
     }
+
 
 }

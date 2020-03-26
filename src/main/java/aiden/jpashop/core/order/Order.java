@@ -1,5 +1,8 @@
 package aiden.jpashop.core.order;
 
+import aiden.jpashop.core.delivery.domain.Delivery;
+import aiden.jpashop.core.delivery.domain.DeliveryStatus;
+import aiden.jpashop.core.support.Address;
 import aiden.jpashop.core.support.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,4 +31,12 @@ public class Order extends BaseTimeEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderLineItem> orderLineItem = new ArrayList<>();
 
+    public Order(Long memberId, OrderStatus orderStatus) {
+        this.memberId = memberId;
+        this.orderStatus = orderStatus;
+    }
+
+    public void cancel() {
+        this.orderStatus = OrderStatus.CANCEL;
+    }
 }
